@@ -1,0 +1,22 @@
+cut out the sql statements from mysql_quotes.sql
+
+use sed to reformat the sql statement so that it's compatible with sqlite.
+
+This changes \' -> ''
+
+cat data.sql | sed "s/\\\'/\'\'/g" > out.sql
+
+This changes \" -> ""
+cat out.sql | sed "s/\\\\\"/\"\"/g" > out2.sql
+
+This removes \r (some lines have \r\n -> leaves \n)
+cat out2.sql | sed "s/\\\r//g" > out3.sql
+
+from the quotes.db folder, run
+    sqlite3 quotes.db
+    .read sql/reset.sql
+
+the reset.sql file has two statements:
+    1. tables.sql (to recreate the tables)
+    2. data.sql (to load the data)
+

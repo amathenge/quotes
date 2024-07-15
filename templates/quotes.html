@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% from "nav.j2" import nav %}
+{% from "form.j2" import showform %}
+
+{% block title %}Quotes Database{% endblock %}
+{% block heading %}Quotes Database{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 border border-secondary">
+        {{ nav([{'url': url_for('home'), 'text': 'Home'}, {'url': url_for('add'), 'text': 'Add Quote'}, {'url': url_for('logout'), 'text': 'Logout'}]) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr>
+    </div>
+</div>
+{{ showform(authors, categories) }}
+<div class="row">
+    <div class="col-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">AUTHOR</th>
+                    <th scope="col">CATEGORY</th>
+                    <th scope="col">QUOTE</th>
+                    <th scope="col">RATING</th>
+                    <th scope="col">&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for quote in quotes %}
+                <tr>
+                    <td><a href="{{ url_for('edit', id=quote.id) }}">{{ quote.id }}</a></td>
+                    <td>{{ quote.author }}</td>
+                    <td>{{ quote.category }}</td>
+                    <td>{{ quote.quote|replace('\n','<br>')|safe }}</td>
+                    <td>{{ quote.rating }}</td>
+                    <td><a href="{{ url_for('delete', id=quote.id) }}"><i class="far fa-trash-alt"></i></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

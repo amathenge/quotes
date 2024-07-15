@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "login.j2" import login %}
+
+{% block title %}Quotes Database{% endblock %}
+{% block heading %}Quotes Database{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 d-flex justify-content-start">
+        <p class="fw-bold text-danger">{{ msg|safe }}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4 align-self-center">
+    </div>
+    <div class="col-4">
+        {{ login(url_for('login'), recaptcha) }}
+    </div>
+    <div class="col-4">&nbsp;</div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% from "nav.j2" import nav %}
+{% from "form.j2" import showform %}
+
+{% block title %}Quotes Database{% endblock %}
+{% block heading %}Quotes Database{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12 border border-secondary">
+        {{ nav([{'url': url_for('home'), 'text': 'Home'}, {'url': url_for('add'), 'text': 'Add Quote'}, {'url': url_for('logout'), 'text': 'Logout'}]) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <hr>
+    </div>
+</div>
+{{ showform(authors, categories) }}
+{% endblock %}
