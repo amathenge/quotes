@@ -1,3 +1,4 @@
+# example of how to use argparse when working with scripts.
 import argparse
 
 parser = argparse.ArgumentParser()
