@@ -14,10 +14,10 @@ app.config['RECAPTCHA_SECRET_KEY'] =  cred.recaptcha_secret_key
 
 recaptcha = ReCaptcha(app)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'quotes'
-app.config['MYSQL_PASSWORD'] = 'quotes'
-app.config['MYSQL_DB'] = 'quotes'
+app.config['MYSQL_HOST'] = cred.mysql_host
+app.config['MYSQL_USER'] = cred.mysql_user
+app.config['MYSQL_PASSWORD'] = cred.mysql_password
+app.config['MYSQL_DB'] = cred.mysql_db
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 # Intialize MySQL

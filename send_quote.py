@@ -20,12 +20,18 @@ import sys
 
 #
 # check the arguments we have before you do anything
-# 
+#
 parser = argparse.ArgumentParser()
 group = parser.add_mutually_exclusive_group()
 group.add_argument("-q", "--quote", help="ID of the Quote you want to see", type=int)
 group.add_argument("-r", "--random", help="Show Random Quote", action="store_true")
 # if -h or --help is given, then the script will end on the next line.
+
+# if no arguments are given, exit after printing help.
+if len(sys.argv) == 1:
+    parser.print_help(sys.stderr)
+    sys.exit(1)
+
 args = parser.parse_args()
 
 quote_id = args.quote
