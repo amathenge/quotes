@@ -53,7 +53,23 @@ if len(data) == 0:
     sql = 'delete from quotes_sent'
     cur.execute(sql)
     db.commit()
-    sql = 'select id from quotes'
+    #
+    # hack to avoid Song quotes
+    #
+    sql = "select id from quotes where category = 'Song'"
+    cur.execute(sql)
+    data = cur.fetchall()
+    sql = "insert into quotes_sent (quote_id) values "
+    sep = ""
+    for item in data:
+        sql += sep + f"({item['id']})"
+        sep = ","
+    cur.execute(sql)
+    db.commit()
+    #
+    # end of populating quotes_sent with 'Song' items
+    #
+    sql = "select id from quotes where category <> 'Song'"
     cur.execute(sql)
     data = cur.fetchall()
     for item in data:
