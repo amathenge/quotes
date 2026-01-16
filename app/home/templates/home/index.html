@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% from "nav.j2" import nav %}
+{% from "form.j2" import showform %}
+
+{% block title %}Quotes Database{% endblock %}
+{% block heading %}Quotes Database{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col border border-secondary bg-light">
+        {{ nav([{'url': url_for('home'), 'text': 'Home'}, {'url': url_for('add'), 'text': 'Add Quote'}, {'url': url_for('smartquotes'), 'text': 'Smart Quotes' }, {'url': url_for('logout'), 'text': 'Logout'}]) }}
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col">
+        <hr>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col">
+        {{ showform(authors, categories) }}
+    </div>
+</div>
+{% endblock %}

@@ -1,4 +1,4 @@
-{% macro login(url, recaptcha) -%}
+{% macro login(url, recaptcha=None) -%}
 <h1 class="text-center">Login Form</h1>
 <form action="{{ url }}" method="POST">
 <div class="form-group my-2">
@@ -9,9 +9,13 @@
     <label for="box2">Password</label>
     <input class="form-control" type="password" id="password" name="password" maxlength="20" required>
 </div>
+
 <div class="form-group d-grid my-2 text-center">
+{% if recaptcha %}
     {{ recaptcha }}
+{% endif %}
     <button class="btn btn-primary mt-3" type="submit">LOGIN</button>
 </div>
+
 </form>
 {%- endmacro %}
